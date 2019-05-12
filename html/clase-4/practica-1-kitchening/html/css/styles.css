@@ -1,0 +1,97 @@
+/*********************************************
+  Estilos generales
+*********************************************/
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 15px 0 0;
+  background-image: url("../images/bg-body.png");
+  font-family: sans-serif;
+  color: #333;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+/* Barras de navegación */
+header .main-nav ul li a,
+footer .main-footer ul li a {
+  display: block;
+  height: 30px;
+  margin-bottom: 1px;
+  background-color: #333;
+  line-height: 30px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+nav ul li a:hover {
+  background-color: black;
+}
+/*********************************************
+  Header
+*********************************************/
+
+/* El logo es una imagen, por eso tengo que pasarlo a bloque */
+header .logo {
+  display: block;
+  margin: 0 auto 30px;
+  border-radius: 50%;
+  border: 1px solid lightgray;
+}
+
+/* Menú */
+
+/* a es un elemento inline, si queremos darle tamaño debemos
+  pasarlo a block o inline-block */
+
+header .toggle-nav {
+  display: block;
+  margin: 0 auto;
+  height: 45px;
+  width: 45px;
+  background-color: #333;
+}
+
+header .toggle-nav span {
+  display: block;
+  text-align: center;
+  line-height: 45px;
+}
+
+/*********************************************
+  Productos
+*********************************************/
+
+/* Hero - En mobile no lo mostramos */
+section.banner { display: none; }
+
+.product .photo-container { position: relative;}
+
+.product .photo-container .photo { width: 100% }
+.product .photo-container .special {
+  position: absolute;
+  top: 0;
+  right: 12px;
+}
+.product .photo-container .zoom {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 30px;
+  margin-top: -15px;
+  line-height: 30px;
+  background-color: rgba(0, 0, 0, 0.5);
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+}
