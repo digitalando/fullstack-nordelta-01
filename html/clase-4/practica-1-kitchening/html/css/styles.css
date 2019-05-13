@@ -21,6 +21,11 @@ nav ul {
   padding: 0;
 }
 
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
 /* Barras de navegación */
 header .main-nav ul li a,
 footer .main-footer ul li a {
@@ -72,7 +77,13 @@ header .toggle-nav span {
 *********************************************/
 
 /* Hero - En mobile no lo mostramos */
-section.banner { display: none; }
+section.banner {
+  display: none;
+  margin-bottom: 30px;
+}
+
+section.banner img { width: 100%; }
+
 
 .product .photo-container { position: relative;}
 
@@ -94,4 +105,70 @@ section.banner { display: none; }
   text-align: center;
   text-transform: uppercase;
   font-weight: bold;
+}
+
+
+/*********************************************
+  Estilos para tablet y escritorio
+*********************************************/
+
+@media screen and (min-width: 600px) {
+  /* Menu del header */
+  header .toggle-nav { display: none; }
+
+  header .main-nav ul { overflow: hidden; }
+  header .main-nav ul li {
+    float: left;
+    width: 15%;
+    margin-right: 2%;
+  }
+  header .main-nav ul li:last-child { margin-right: 0%; }
+
+  /* Mostramos el banner para tablet o escritorio */
+  section.banner { display: block; }
+
+  /* Vamos a necesitar flotar los productos y ajustar su ancho */
+  .vip-products { overflow: hidden; }
+
+  .product {
+    float: left;
+    width: 49%;
+    margin-right: 2%;
+  }
+
+  /* Quitamos el margen para el último de la fila */
+  .product:nth-child(even) { margin-right: 0%; }
+}
+
+@media screen and (min-width: 900px) {
+  /* Para escritorio, solo va a hacer falta pisar los estilos anteriores
+    con los que correspondan.
+    Recuerden que la última línea es la que el navegador va a tomar en cuenta. */
+  .product {
+    width: 32%;
+  }
+
+  /* Quitamos el margen para el último de la fila */
+  .product:nth-child(even) { margin-right: 2%; }
+  .product:nth-child(3n) { margin-right: 0; }
+
+  /* Menu del footer */
+  footer .main-footer {
+    background: red;
+    padding: 3em;
+    border-radius: 24px 24px 0 0;
+  }
+
+  footer .main-footer ul { text-align: center; }
+  footer .main-footer ul li { display: inline-block; }
+  footer .main-footer ul li a {
+    display: inline-block;
+    background-color: transparent;
+    text-transform: capitalize;
+  }
+  footer .main-footer ul li:not(:last-child)::after {
+    content: " |";
+    color: white;
+  }
+
 }
