@@ -60,10 +60,11 @@ header .logo {
 
 header .toggle-nav {
   display: block;
-  margin: 0 auto;
+  margin: 0 auto 20px;
   height: 45px;
   width: 45px;
   background-color: #333;
+  cursor: pointer;
 }
 
 header .toggle-nav span {
@@ -71,6 +72,19 @@ header .toggle-nav span {
   text-align: center;
   line-height: 45px;
 }
+
+header .main-nav {
+  /* display: none; */
+  height: 0;
+  /* Indicamos que queremos que todas las transiciones duren 0.3 segundos */
+  transition: all .3s ease-out;
+}
+header .main-nav.active {
+  /* display: block; */
+  height: 206px;
+}
+
+
 
 /*********************************************
   Productos
