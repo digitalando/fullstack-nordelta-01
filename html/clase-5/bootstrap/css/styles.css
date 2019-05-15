@@ -1,0 +1,10 @@
+body { background-color: lightgray;}
+
+.container {
+}
+
+.box {
+  padding: 12px;
+  background-color: white;
+  border-radius: 12px;
+}
