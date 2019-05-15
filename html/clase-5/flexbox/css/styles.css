@@ -1,0 +1,52 @@
+* { box-sizing: border-box; }
+
+body {
+  background-color: #333;
+  font-family: sans-serif;
+  color: white;
+}
+
+.container {
+  width: 700px;
+  margin: 0 auto;
+}
+
+.flexbox {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: gray;
+}
+
+.box {
+  height: 200px;
+  width: 200px;
+  text-align: center;
+  line-height: 200px;
+}
+
+.box:nth-child(4n+1) {background-color: orange }
+.box:nth-child(4n+2) {background-color: red }
+.box:nth-child(4n+3) {background-color: green }
+.box:nth-child(4n+4) {background-color: black }
+
+.box { order: 2; }
+.box.oferta {
+  order: 1;
+  flex-grow: 1;
+}
+
+
+.backToTop {
+  height: 48px;
+  width: 48px;
+  background-color: green;
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  text-align: center;
+  line-height: 48px;
+  border-radius: 50%;
+  box-shadow: 4px 4px 4px rgba(0,0,0,0.5);
+}
