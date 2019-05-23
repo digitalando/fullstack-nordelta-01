@@ -1,0 +1,13 @@
+- arrays ok
+- for() {} ok
+- while() {} ok
+- do {} while () ok
+- contadores ok
+- bucles infinitos ok
+- break / continue / exit / return ok
+- forEach($xxx as $yyy) {}
+- forEach($xxx as $yyy => $zzz) {}
+- operadores ++ -- ok
+- embed ok
+
+grupos.

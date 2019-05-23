@@ -1,0 +1,62 @@
+:root {
+  --bg-grupo-1: ;
+  --bg-grupo-2: ;
+  --bg-grupo-3: ;
+  --bg-grupo-4: ;
+  --bg-grupo-5: ;
+  --bg-grupo-6: ;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+}
+
+code {
+  font-family: 'Roboto Mono', monospace;
+}
+
+header,
+footer {
+  padding: 2em;
+  background-color: #222;
+  color: white;
+}
+
+header { border-bottom: 30px solid #FF5C00; }
+footer { border-top: 30px solid #FF5C00; }
+
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+.groups {
+  overflow: hidden;
+  margin: 2em 0;
+}
+
+.group {
+  width: 31%;
+  height: 22em;
+  margin-right: 2%;
+  margin-bottom: 30px;
+  float: left;
+  padding: 1em 2em;
+  border-radius: 1em;
+  background: linear-gradient(to right,#ff8a00,#da1b60);
+}
+
+.group h3 {
+  color: white;
+  font-size: 1.5em;
+  padding-bottom: .5em;
+  border-bottom: solid 3px white;
+}
+
+.group .member {
+  color: white;
+  font-size: 1.5em;
+}
