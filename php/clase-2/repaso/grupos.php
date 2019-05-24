@@ -15,9 +15,9 @@
       "Alvarez, Joaquin",
       "Poggi, Natalia",
       "Villanueba, Teodoro",
-      "BOUBEE, JUAN",
     ],
     'Grupo 4' => [
+      "BOUBEE, JUAN",
       "Suarez, Natalia",
       "De Larrechea, Añes",
       "Saguier, Violeta",
