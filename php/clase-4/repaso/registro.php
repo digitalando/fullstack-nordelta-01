@@ -45,6 +45,11 @@
     } elseif (strlen($pass) < 8) {
       $errors['pass'] = "La contraseña debe tener al menos 8 caracteres";
     }
+
+    /* Si no hay errores, lo mandamos a la página de éxito */
+    if(!$errors) {
+      header("location: registro-exitoso.php?name=$name");
+    }
   }
 
   // print_r($errors);
@@ -72,7 +77,7 @@
         </div>
         -->
         <div class="register-form">
-          <form method="post">
+          <form method="post" action="">
             <div class="row">
               <label> Nombre
                 <input type="text" name="name" value="<?php echo $name ?>">
