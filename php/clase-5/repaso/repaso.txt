@@ -1,0 +1,27 @@
+- Constantes
+- Forms y archivos
+  - input type file
+  - form enctype="multipart/form-data"
+  - Request / Response / Headers
+  - $_FILES
+    - ['error']
+      - https://php.net/manual/es/features.file-upload.errors.php
+      - UPLOAD_ERR_OK
+    - ['name']
+      - pathinfo($name, PATHINFO_EXTENSION);
+    - ['tmp_name']
+    - ['size']
+    - ['type']
+- Passwords
+  - password_hash($pass, PASSWORD_DEFAULT);
+  - password_verify($pass, $hashedPass)
+- JSON
+  - formato / JSON lint
+  - json_encode($phpData);
+  - json_decode($jsonData, true); --> devuelve un array
+- PHP y archivos
+  - file_get_contents($archivo);
+  - file_put_contents($archivo, $contenido);
+  - file_put_contents($archivo, $contenido, FILE_APPEND);
+
+- Agreguen a mi página.

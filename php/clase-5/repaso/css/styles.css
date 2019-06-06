@@ -1,0 +1,99 @@
+/* Esquema de colores */
+/* https://coolors.co/b9e3c6-59c9a5-d81e5b-23395b-fffd98 */
+
+:root {
+  --primary-color: #59c9a5;
+  --secondary-color: #23395b;
+  --border-radius: 24px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background-color: var(--primary-color);
+}
+
+header,
+footer {
+  overflow: hidden;
+  padding: 24px;
+  background-color: #23395b;
+  color: white;
+  text-align: center;
+}
+
+main {
+  margin: 72px 0;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Estilos generales de los formularios */
+
+form .row {
+  margin-bottom: 24px;
+}
+
+form label {
+  display: block;
+  font-size: .8em;
+  text-transform: uppercase;
+}
+
+form input,
+form button {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  border-radius: var(--border-radius);
+}
+
+form input {
+  margin-top: 6px;
+  border: solid 2px var(--primary-color);
+}
+
+form button {
+  border: 0;
+  background-color: var(--primary-color);
+  color: white;
+}
+
+/* Estilos específicos del formulario de registro */
+.register-form {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 48px;
+  background: white;
+  border-radius: var(--border-radius);
+}
+
+.errors {
+  padding: 12px;
+  border-radius: var(--border-radius);
+  color: #d81e5b;
+}
+
+
+/* Estilos de grupos */
+
+.groups {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 24px;
+}
+
+.group {
+  width: 32%;
+  padding: 12px;
+  background-color: white;
+  border-radius: var(--border-radius);
+  margin-bottom: 24px;
+}
