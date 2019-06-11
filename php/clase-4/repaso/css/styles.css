@@ -79,3 +79,21 @@ form button {
   border-radius: var(--border-radius);
   color: #d81e5b;
 }
+
+
+/* Estilos de grupos */
+
+.groups {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 24px;
+}
+
+.group {
+  width: 32%;
+  padding: 12px;
+  background-color: white;
+  border-radius: var(--border-radius);
+  margin-bottom: 24px;
+}
