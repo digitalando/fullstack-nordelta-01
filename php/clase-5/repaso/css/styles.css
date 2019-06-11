@@ -14,6 +14,7 @@ body {
   padding: 0;
   font-family: sans-serif;
   background-color: var(--primary-color);
+  min-height: 100vh;
 }
 
 header,
@@ -26,12 +27,13 @@ footer {
 }
 
 main {
-  margin: 72px 0;
+  padding: 72px 0;
 }
 
 .container {
   max-width: 900px;
   margin: 0 auto;
+  min-height: calc(100vh - 246px);
 }
 
 /* Estilos generales de los formularios */
@@ -47,15 +49,18 @@ form label {
 }
 
 form input,
-form button {
+form button,
+form select {
   display: block;
   width: 100%;
   padding: 12px;
   border-radius: var(--border-radius);
 }
 
-form input {
+form input,
+form select {
   margin-top: 6px;
+  background-color: white;
   border: solid 2px var(--primary-color);
 }
 
@@ -80,6 +85,15 @@ form button {
   color: #d81e5b;
 }
 
+/* Mensaje de éxito */
+.success-message {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 48px;
+  text-align: center;
+  background: white;
+  border-radius: var(--border-radius);
+}
 
 /* Estilos de grupos */
 

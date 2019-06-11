@@ -1,168 +1,204 @@
 <?php
+
+  // Requerimos nuestro archivo de configuración.
   require_once("php/config.php");
 
-  //print_r($_POST);
-  //print_r($_FILES);
-  // echo "El nombre enviado es: " . $_POST["fullname"];
+  // Persistencia:
+  // queremos que no haya error la primera vez que se cargue el formulario
+  // ya que $_POST va a estar vacío.
+  $projectName = isset($_POST['projectName']) ? $_POST['projectName'] : "";
+  $projectType = isset($_POST['projectType']) ? $_POST['projectType'] : "";
+  $projectImage = isset($_FILES['projectImage']) ? $_FILES['projectImage'] : "";
+  $email = isset($_POST['email']) ? $_POST['email'] : "";
+  $pass = isset($_POST['pass']) ? $_POST['pass'] : "";
+  $repass = isset($_POST['repass']) ? $_POST['repass'] : "";
 
-  /* 1. Validar si los datos son correctos
-      Email en formato de Email
-      Usuario 5 o más caracteres
-      Password 8 caracteres
-  */
-
+  // Validación
+  // Arrancamos con el array de errores vacío y lo llenamos a medida que los
+  // encontremos.
   $errors = [];
 
-  $name = isset($_POST['name']) ? $_POST['name'] : "";
-  $email = isset($_POST['email']) ? $_POST['email'] : "";
-  $user = isset($_POST['user']) ? $_POST['user'] : "";
-  $pass = isset($_POST['pass']) ? $_POST['pass'] : "";
-
-  /* Validación */
-
+  // La validación sólo tiene sentido si nos llegan datos.
   if ($_POST) {
-    /* Nombre 3 o más caracteres */
-    if (!$name) {
-      $errors['name'] = "Debes ingresar un nombre.";
-    } elseif (strlen($name) < 3) {
-      $errors['name'] = "El nombre debe tener al menos 3 caracteres";
+
+    // Nombre del proyecto, al menos 5 caracteres.
+    if (!$projectName) {
+      $errors['projectName'] = "Debes ingresar un nombre.";
+    } elseif (strlen($projectName) < 5) {
+      $errors['projectName'] = "El nombre debe tener al menos 5 caracteres";
     }
 
-    /* Email en formato válido */
+    // Tipo del proyecto, deben haber elejido uno.
+    if (!$projectType) {
+      $errors['projectType'] = "Debes elejir un tipo de proyecto.";
+    }
+
+    // Imagen del proyecto, es obligatoria.
+    if (!$projectImage) {
+      $errors['projectImage'] = "Debes subir una imagen para tu proyecto.";
+    } elseif ($projectImage["error"] != UPLOAD_ERR_OK) {
+      $errors['projectImage'] = "Ocurrió un error al subir la imagen del proyecto.";
+    }
+
+    // Email en formato válido.
     if (!$email) {
       $errors['email'] = "Debes ingresar un email.";
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
       $errors['email'] = "El email deber tener un formato válido.";
     }
 
-    /* Usuario 5 o más caracteres */
-    if (!$user) {
-      $errors['user'] = "Debes ingresar un usuario.";
-    } elseif (strlen($user) < 5) {
-
-      $errors['user'] = "El usuario debe tener al menos 5 caracteres";
-    }
-
-    /* Nombre 3 o más caracteres */
+    // Contraseña, al menos 8 caracteres.
     if (!$pass) {
       $errors['pass'] = "Debes ingresar una contraseña.";
     } elseif (strlen($pass) < 8) {
       $errors['pass'] = "La contraseña debe tener al menos 8 caracteres";
     }
 
+    // Verificar contraseña, debe coincidir con contraseña.
+    if ($pass != $repass) {
+      $errors['pass'] = "Las contraseñas deben coincidir.";
+    }
 
-    /* Si no hay errores, lo mandamos a la página de éxito */
+    // Si no hay errores, podemos proceder a guardar los datos.
     if(!$errors) {
-      /* Sanitización */
 
-      $pass = password_hash($pass, PASSWORD_DEFAULT);
+      // Sanitización:
+      // Antes de guardar los datos, tenemos que asegurarnos de limpiarlos
+      // quitando cualquier elemento innesesario y encriptando datos sensibles
+      // como las contraseñas.
 
+      // Vamos a armar nuestro usuario en un array nuevo, ya que $_POST puede
+      // contener elementos innesesarios.
+
+      // Comenzamos con los datos que van directo.
       $user = [
-        'name' => $name,
+        'projectName' => $projectName,
+        'projectType' => $projectType,
         'email' => $email,
-        'user' => $user,
-        'pass' => $pass,
       ];
 
-      $allUsersJson = file_get_contents(USERS_FILE);
+      // Seguimos por la imagen.
 
-      $allUsersArray = json_decode($allUsersJson, true);
+      // Tomamos los datos originales de la imagen.
+      $oldPath = $projectImage["tmp_name"];
+      $oldName = $projectImage["name"];
+      $extension = pathinfo($oldName, PATHINFO_EXTENSION);
 
-      $allUsersArray[] = $user;
+      // Formamos el nuevo nombre y el nuevo path a donde quedará guardada.
+      $newName = uniqid('project-img-') . "." . $extension;
+      $newPath = IMAGE_DIR . $newName;
 
-      $allUsersJson = json_encode($allUsersArray);
+      // Guardamos la imagen en su path final y la agregamos al array de usuario.
+      move_uploaded_file($oldPath, $newPath);
+      $user['projectImage'] = $newName;
 
-      file_put_contents(USERS_FILE, $allUsersJson);
+      // Seguimos por la contraseña que debemos encriptar.
+      $user['pass'] = password_hash($pass, PASSWORD_DEFAULT);
 
-      // Guardamos el usuario en nuestra base de usuarios
+      // Si ya existe un archivo de usuarios, los traemos.
+      if (file_exists(USERS_FILE)) {
+        $allUsers = file_get_contents(USERS_FILE);
+      // Si no existe, creamos un JSON con un array vacío.
+      } else {
+        $allUsers = '[]';
+      }
+      // Pasamos el formato JSON a un array de PHP para poder trabajarlo.
+      $allUsers = json_decode($allUsers, true);
 
+      // Vamos a querer identificar a nuestros usuarios, así que les ponemos un
+      // ID numérico.
+      $user['id'] = count($allUsers) + 1;
+
+      // Agregamos el nuevo usuario.
+      $allUsers[] = $user;
+
+      // Salvamos los usuarios.
+      $allUsers = json_encode($allUsers);
+      file_put_contents(USERS_FILE, $allUsers);
+
+      // Asumimos que todo anduvo de maravilla y enviamos al usuario a una
+      // pantalla de éxito.
+      header("location: registro-exitoso.php?userId={$user['id']}");
     }
   }
-
-
-
-  if ($_POST) {
-
-    $oldPath = $_FILES["image"]["tmp_name"];
-
-    $filename = $_FILES["image"]["name"];
-    $extension = pathinfo($filename, PATHINFO_EXTENSION);
-    $newPath = IMAGE_DIR . uniqid('user-img-') . "." . $extension;
-
-    move_uploaded_file($oldPath, $newPath);
-  }
-
-
-/*
-  [name] => perfil.jpeg
-  [type] => image/jpeg
-  [tmp_name] => /tmp/phpPO4iZ7
-  [error] => 0
-  [size] => 104638 )
-*/
-  // print_r($errors);
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/styles.css">
-    <title>Formulario de Registro | Verdulería Online</title>
+    <title>Formulario de Registro | Proyectos DH</title>
   </head>
   <body>
     <header>
-      <h1>Formulario de Registro | Verdulería Online</h1>
+      <h1>Formulario de Registro | Proyectos DH</h1>
     </header>
     <div class="container">
       <main>
-        <!--
-        <div class="errors">
-          <ul>
-            <?php foreach ($errors as $field => $error) : ?>
-              <li><?php echo $error ?></li>
-            <?php endforeach ?>
-          </ul>
-        </div>
-        -->
         <div class="register-form">
-        <form method="post" action="" enctype="multipart/form-data">
+          <!--  Como vamos a enviar archivos necesitamos que el enctype sea
+                multipart/form-data -->
+          <form method="post" action="" enctype="multipart/form-data">
+
             <div class="row">
-              <label> Nombre
-                <input type="text" name="name" value="<?php echo $name ?>">
+              <label> Nombre del grupo
+                <input type="text" name="projectName" value="<?php echo $projectName ?>">
               </label>
-              <?php if (isset($errors['name'])) : ?>
-                <p class="errors"><?php echo $errors['name'] ?></p>
-              <?php endif; ?>
             </div>
+            <?php if (isset($errors['projectName'])) : ?>
+              <p class="errors"><?php echo $errors['projectName'] ?></p>
+            <?php endif; ?>
+
+            <div class="row">
+              <label> Tipo de proyecto
+                <select name="projectType">
+                  <option value="">Seleccione un tipo</option>
+                  <option value="Marketplace" <?php echo $projectType == 'Marketplace' ? 'selected' : '' ?>>Marketplace</option>
+                  <option value="Red social" <?php echo $projectType == 'Red social' ? 'selected' : '' ?>>Red social</option>
+                  <option value="Juego de preguntas" <?php echo $projectType == 'Juego de preguntas' ? 'selected' : '' ?>>Juego de preguntas</option>
+                </select>
+              </label>
+            </div>
+            <?php if (isset($errors['projectType'])) : ?>
+              <p class="errors"><?php echo $errors['projectType'] ?></p>
+            <?php endif; ?>
+
             <div class="row">
               <label> Imagen
-                <input type="file" name="image">
+                <input type="file" name="projectImage">
               </label>
             </div>
+            <?php if (isset($errors['projectImage'])) : ?>
+              <p class="errors"><?php echo $errors['projectImage'] ?></p>
+            <?php endif; ?>
+
             <div class="row">
               <label> Email
-                <input type="text" name="email" value="<?php echo $email ?>">
+                <input type="text" name="email"  value="<?php echo $email ?>">
               </label>
-              <?php if (isset($errors['email'])) : ?>
-                <p class="errors"><?php echo $errors['email'] ?></p>
-              <?php endif; ?>
             </div>
+            <?php if (isset($errors['email'])) : ?>
+              <p class="errors"><?php echo $errors['email'] ?></p>
+            <?php endif; ?>
+
             <div class="row">
-              <label> Usuario
-                <input type="text" name="user" value="<?php echo $user ?>">
-              </label>
-              <?php if (isset($errors['user'])) : ?>
-                <p class="errors"><?php echo $errors['user'] ?></p>
-              <?php endif; ?>
-            </div>
-            <div class="row">
-              <label> Password
+              <label> Contraseña
                 <input type="password" name="pass" value="">
               </label>
-              <?php if (isset($errors['pass'])) : ?>
-                <p class="errors"><?php echo $errors['pass'] ?></p>
-              <?php endif; ?>
             </div>
+            <?php if (isset($errors['pass'])) : ?>
+              <p class="errors"><?php echo $errors['pass'] ?></p>
+            <?php endif; ?>
+
+            <div class="row">
+              <label> Confirme contraseña
+                <input type="password" name="repass" value="">
+              </label>
+            </div>
+            <?php if (isset($errors['repass'])) : ?>
+              <p class="errors"><?php echo $errors['repass'] ?></p>
+            <?php endif; ?>
+
             <div class="row">
               <button type="submit">Enviar</button>
             </div>
@@ -171,7 +207,7 @@
       </main>
     </div>
     <footer>
-      <h2>Formulario de Registro | Verdulería Online</h2>
+      <h2>Formulario de Registro | Proyectos DH</h2>
     </footer>
   </body>
 </html>
