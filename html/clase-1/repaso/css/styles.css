@@ -1,0 +1,29 @@
+* { font-family: sans-serif; }
+
+p { color: red; }
+
+#last-p {
+  color: green;
+  font-family: Arial, Trebuchet, sans-serif;
+}
+
+.txt-center {
+  text-align: center;
+}
+
+.txt-italic {
+  text-style: italic;
+}
+
+.txt-bold {
+  font-weight: bold;
+}
+
+.big-text {
+  font-size: 32px;
+  color: #00ff00;
+}
+
+.dog-image { width: 25% }
+
+strong { text-transform: uppercase;}
