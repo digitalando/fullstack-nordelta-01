@@ -1,0 +1,12 @@
+- class
+- nueva instancia
+- multiples instances
+- atributos
+- métodos
+- $this
+- scope
+  - public
+  - private
+  - protected (solo para la clase y su descendencia)
+- setters / getters
+- __construct()
