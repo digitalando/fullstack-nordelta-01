@@ -1,0 +1,52 @@
+Herencia
+class Padre {}
+class Hijo extends Padre {}
+
+Scopes
+Overloading
+
+Clases abstractas
+- No se pueden instanciar
+- Heredan igual que las clases normales
+- Pueden declarar métodos abstractos que sus hijos deben definir
+
+abstract class Padre {
+  public abstract function myFunction(param1, param2);
+}
+
+Interfaces
+- No tienen atributos
+- Sólo permiten firmas de métodos (nombre y parámetros)
+
+interface imprimible {
+  public function imprimir(documento);
+}
+
+class presentacion implement documento {
+  public function imprimir(documento) {
+    // código
+  }
+}
+
+Propiedades y métodos estáticos
+- Pueden accederse sin instanciar la clase, sin el new miClase();
+- Los objetos instanciados no pueden acceder a la propiedad
+- Secceden con ::
+
+class Colectivo() {
+  public static $precios = [...];
+  public static function getPrecios() {
+    ...
+  }
+}
+
+echo Colectivo()::$precios;
+
+Parent
+- Nos permite acceder a propiedades y métodos de la clase padre
+- Se usa mucho para ejecutar el constructor del padre
+
+self::
+
+
+$variable instanceof class
