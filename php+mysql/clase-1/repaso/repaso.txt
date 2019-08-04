@@ -1,0 +1,28 @@
+- Server <--> PHP <--> PDO <--> MySQL
+- Configurar conexión
+- DSN --> Data Source Name
+- Objetos
+- Excepciones
+  - try -> catch
+
+- Consultas
+  - prepare
+  - execute
+  - fetchAll()
+  - PDO::FETCH_ASSOC
+  - charset=utf8
+  - fetch()
+
+- Binding
+  - ->bindValue()
+
+- Otros
+  - $stmt->rowCount()
+  - $stmt->query() --> SELECT
+  - $stmt->exec() --> !SELECT --> INSERT, UPDATE, DELETE
+  - $dbConn->lastInsertId() -->
+
+- Transactions
+  - $dbConn->beginTransaction();
+  - $dbConn->commit();
+  - $dbConn->rollback();
