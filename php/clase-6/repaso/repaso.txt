@@ -1,0 +1,12 @@
+- Cookies
+  - $_COOKIE
+  - setcookie($nombre, $valor, $expiracion)
+  - $expiracion en segundos time() + XXX
+  - setcookie($nombre, null, time() -1)
+  - isset($COOKIE[$nombre])
+
+- Session
+  - $_SESSION
+  - session_start();
+  - $_SESSION['loQueSea'] = 'Mi valor';
+  - session_destroy();
