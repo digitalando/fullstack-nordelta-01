@@ -1,0 +1,73 @@
+- Qué vimos:
+SELECT
+  tabla_1.campo_1,
+  tabla_1.campo_2,
+  tabla_2.campo_1,
+  tabla_2.campo_2 AS alias_campo,
+FROM
+  tabla_1 AS alias_tabla_1,
+  tabla_2 AS alias_tabla_2,
+WHERE
+  tabla_1.campo_1 = tabla_2.campo_2
+  AND tabla_1.campo_1 > 10
+  AND ( tabla_1.campo_2 LIKE '%texto%')
+  OR tabla_1.campo_2 LIKE '%otro texto%')
+ORDER BY
+  tabla_1.campo_2
+LIMIT 10
+OFFSET 10
+
+- Join
+  - JOIN / INNER JOIN (default) -> unimos sólo si hay data de ambos lados
+  - LEFT JOIN
+  - RIGHT JOIN
+  - FULL JOIN
+
+- Distinct
+  - SELECT DISTINCT ...
+
+- Funciones
+  - CONCAT(data, data, data)
+  - COALESCE(data, dafault)
+  - DATEDIFF(fecha_1, fecha_2), NOW()
+  - DATEFORMAT()
+  - EXTRACT --> YEAR(), MONTH(), DAY()
+  - REPLACE(dato, busqueda, reemplazo)
+  - LENGTH(string)
+  - CASE
+      WHEN ... THEN
+      WHEN ... THEN
+      ELSE
+    END
+
+- Funciones de agregación
+  - MIN
+  - MAX
+  - SUM
+  - AVG
+  - COUNT
+
+SELECT MIN(), MAX(), AVG()
+
+- Group by
+  - En el SELECT sólo podemos usar los campos agrupados y las funciones de agregación.
+
+
+- Having (como el WHERE pero solo funciona con el GROUP BY y las funciones de agregación)
+
+- Subqueries
+WHERE ... IN (SELECT ...)
+
+
+SELECT
+  ...
+FROM
+  ...
+WHERE
+  ...
+GROUP BY
+  ...
+ORDER BY
+  ...
+LIMIT ...
+OFFSET ...
