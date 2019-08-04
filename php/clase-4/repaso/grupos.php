@@ -2,9 +2,9 @@
   $grupos = [
     'Grupo 1' => [
       "integrantes" => [
-        "Paolella, Gonzalo",
-        "Marocchi, Ezequiel",
         "Ariztizabal, Joaquin",
+        "Boubee, Juan",
+        "Paolella, Gonzalo",
       ],
       "proyecto" => [
         "nombre" => "",
@@ -17,6 +17,7 @@
         "Guiñazu, Victoria",
         "Paula María, Ghirlanda",
         "Sangineto, Maria Florencia",
+        "Saguier, Violeta",
       ],
       "proyecto" => [
         "nombre" => "",
@@ -37,13 +38,10 @@
       ],
     ],
     'Grupo 4' => [
-      "integrantes" => [
-        "Boubee, Juan",
-        "Saguier, Violeta",
-      ],
+      "integrantes" => [],
       "proyecto" => [
         "nombre" => "",
-        "tema" => "Ecommerce de ???",
+        "tema" => "",
         "repo" => "",
       ],
     ],
@@ -51,7 +49,6 @@
       "integrantes" => [
         "Medina, Vicente",
         "Guaglianone, Fabrizio",
-        "Pavlovsky, Beltran",
       ],
       "proyecto" => [
         "nombre" => "",
