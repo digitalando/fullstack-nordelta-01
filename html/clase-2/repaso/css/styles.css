@@ -1,0 +1,89 @@
+/* Estilos generales */
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+
+/* Específicos */
+
+.box {
+  width: 250px;
+  height: 250px;
+  margin: 10px;
+  color: white;
+  text-align: center;
+  line-height: 250px;
+  font-size: 32px;
+}
+
+.little-box {
+  width: 50px;
+  height: 50px;
+  background-color: brown;
+  position: absolute;
+  top: 25px;
+  left: 25px;
+}
+
+.box:nth-child(3n+1) { background-color: green; }
+.box:nth-child(3n+2) { background-color: blue; }
+.box:nth-child(3n+3) { background-color: red; }
+
+/* Posicionamiento */
+
+.position .box:nth-child(1) {
+  position: relative;
+  top: 50px;
+  right: -50px;
+}
+.position .box:nth-child(2) {
+  position: absolute;
+  bottom: 50px;
+  left: 300px;
+}
+.position .box:nth-child(3) {
+  position: fixed;
+  bottom: 0px;
+  right: 25px;
+  width: 200px;
+  height: 250px;
+  margin: 0;
+}
+
+.position .box:nth-child(5),
+.position .box:nth-child(9) { position: relative; }
+
+/* Floats */
+
+.float {
+  background-color: #333;
+  padding: 25px;
+}
+.float::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.float .box {
+  float: left;
+  position: relative;
+}
+
+.box::after {
+  display: block;
+  content: "";
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 25px 25px 0 25px;
+  border-color: #007bff transparent transparent;
+  position:absolute;
+  left: 100px;
+}
+
+/*
+.float .clear { clear: both; }
+*/
