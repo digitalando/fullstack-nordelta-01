@@ -1,0 +1,51 @@
+- Movies DB (import)
+- Consultas
+
+- Select
+
+SELECT
+  t1.campo_1,
+FROM
+  tabla_1 AS t1
+WHERE
+  condicion_1,
+  AND condicion_2,
+  OR condicion_3
+ORDER BY
+  campo_1 ASC,
+  campo_2 DESC,
+LIMIT 10
+OFFSET 10
+
+
+SELECT
+  t1.campo_1,
+  t2.campo_1,
+FROM
+  tabla_1 AS t1
+  tabla_2 AS t2
+WHERE
+  t1.campo_1 = t2.campo_2
+
+SELECT
+  id,
+  first_name AS Nombre,
+  last_name AS Apellido,
+  rating as Rating
+FROM
+  actors
+WHERE
+  rating > 6
+ORDER BY
+  rating DESC,
+  last_name;
+
+
+>
+LIKE %
+NOT
+BETWEEN
+LIMIT 20, 10
+LIMIT 20 <--offset, 10 <--limit
+
+- Ejercicios

@@ -1,0 +1,23 @@
+- Servidores y puertos
+- Sistemas de Gestión de Bases de datos
+- Tablas, campos, filas
+- Claves primarias, autoincrementales
+
+- Modelado de bases (DER)
+  - Tabla (sustantivo)
+  - Atributos, PKs
+  - Relación (vervo)
+  - Cardinalidad
+- Contexto.
+
+- Tipos de datos:
+  - numéricos
+  - fechas
+  - texto
+- Constraints: primary key, unique, default, not null.
+
+- DDL (Data Definition Language)
+  - Create, drop, alter (add, modify, drop)
+
+- DML (Data Manipulation Language)
+  - insert, delete, update
