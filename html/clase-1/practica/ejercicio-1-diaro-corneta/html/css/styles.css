@@ -1,0 +1,31 @@
+/* Estilos generales */
+body {
+  width: 700px;
+  font-family: Verdana, Geneva, sans-serif;
+  /* Estos estilos se repiten en varios elementos entonces los 
+    hacemos generales */
+  font-size: 18px;
+  line-height: 27px;
+}
+
+/* Estilos generales a los encabezados */
+h1,
+h2 {
+  font-family: tahoma, Helvetica, sans-serif;
+}
+
+h1 {
+  font-size: 37px;
+  line-height: 46px;
+}
+
+h2 {
+  font-size: 25px;
+  line-height: 38px
+}
+
+/* Bajada del artículo */
+p.sinopsis { color:#666; }
+
+/* Párrafos comunes */
+p { color:#333; }
