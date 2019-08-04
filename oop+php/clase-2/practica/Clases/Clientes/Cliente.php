@@ -2,10 +2,10 @@
 
 //Defino variables privadas para la clase Cliente
 
-Class Cliente{
+abstract class Cliente{
 
-  Private $email;
-  Private $pass;
+  private $email;
+  private $pass;
 
 //Creo una función constructora con sus parámetros necesarios
 
