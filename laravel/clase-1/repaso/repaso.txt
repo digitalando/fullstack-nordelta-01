@@ -1,0 +1,37 @@
+Laravel como framework.
+Composer como gestor de paquetes
+- https://getcomposer.org/
+- https://packagist.org/
+Instalación
+- Linux: https://www.digitalocean.com/community/tutorials/how-to-install-and-use-composer-on-ubuntu-18-04
+
+Creamos un proyecto
+https://laravel.com/docs/master#installing-laravel
+# composer create-project laravel/laravel movies-site
+
+# php artisan key:generate
+
+Laravel es un paquete que a su vez depende de muchos paquetes.
+
+.gitignore
+.env
+vendor/
+artican
+
+Git commit
+composer update
+
+# php artisan serve
+
+Rutas
+-----
+GET / POST / PUT ~ PATCH / DELETE
+--> routes/web.php
+
+Vistas
+------
+--> resources/views
+
+Recursos Estáticos
+------------------
+--> public
