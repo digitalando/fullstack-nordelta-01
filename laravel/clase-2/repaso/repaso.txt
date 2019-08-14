@@ -1,0 +1,37 @@
+Concepto de MVC
+
+Modelo, vista, controlador, rutas
+
+Creación de páginas: ruta > controlador > vista
+
+Controlador
+-----------
+php artisan make:controller NombreControlador
+
+php artisan make:controller NombreControlador -R
+
+Rutas
+-----
+Route:get('/movies', 'MoviesController@list');
+
+
+Modelos
+-------
+php artisan make:model NombreModelo (en singular)
+
+Laravel supone una estructura determinada de base por defecto. Si la vamos a cambiar tenemos que configurarlo.
+
+$guarded = [];
+$fillable = ['campo1', 'campo2'];
+
+ORM -> Elocuent
+---------------
+Modelo::all()
+Modelo::find(id)
+Modelo::where(...)
+Modelo::paginate()
+
+Modelo::where(...)->paginate()
+
+Links
+{{ $movies->links() }}
