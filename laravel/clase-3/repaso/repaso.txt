@@ -1,0 +1,17 @@
+{{csrf_field()}}
+
+Controller
+----------
+
+use App\Movie;
+
+class MoviesController extends Controller {
+  public function add(Request $data) {
+    $movie = new Movie()
+    $movie->title = $data['title'];
+    $movie->title = $data['rating'];
+    ...
+    $movie->save();
+    return redirect('namedRoute');
+  }
+}
