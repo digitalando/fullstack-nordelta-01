@@ -14,4 +14,75 @@ class MoviesController extends Controller {
     $movie->save();
     return redirect('namedRoute');
   }
+
+  public function store(Request $data) {
+    $data->validate([
+      'field' => 'required|unique:movies|max:255',
+      'other_field' => 'required',
+    ]);
+
+    // Guardamos la imagen
+    $path = $data->file('poster')->store('public');
+    $filename = basename($path);
+
+    // Guardamos el registro en base de datos
+    $movie->poster = $filename;
+    $movie->save();
+
+    // Se necesita general el link a storage
+    // php artisan storage:link
+    // <img src="/storage/{{ $movie->poster }}">
+  }
+
+  public function destroy(Request $data) {
+    $movie = new Movie::find($data['id']);
+    $movie->delete();
+
+    return redirect('namedRoute');
+  }
 }
+
+$data->validate(
+  [
+    'field' => 'required|unique:movies|max:255',
+    'other_field' => 'required',
+  ],[
+    'required' => 'El campo :attribute es requerido',
+    'max' => 'El campo :attribute debe tener como máximo :mas caracteres',
+  ]
+);
+
+https://laravel.com/docs/5.8/validation
+https://laravel.com/docs/5.8/validation#available-validation-rules
+
+@error('title')
+    <div class="alert alert-danger">{{ $message }}</div>
+@enderror
+
+https://laravel.com/docs/5.8/redirects
+
+return back()->withInput();
+return redirect('dashboard')->with('status', 'Profile updated!');
+
+Relaciones
+----------
+
+https://laravel.com/docs/5.8/eloquent-relationships
+
+1:1 hasOne()
+
+N:1 belongsTo
+Episode -> Season
+
+1:0-N hasMany()
+Season -> Episode
+Post -> Comments
+
+public function season() {
+  return $this->belongsTo('App\Seasson')
+}
+
+$movie->seasson;
+
+N:M belongsToMany()
+Actor -> Movie

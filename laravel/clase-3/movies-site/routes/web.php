@@ -12,10 +12,17 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
+Route::group(['middleware' => 'auth'], function() {
+  Route::resource('actors', 'ActorController');
+});
 
 // Route::get('movies', 'MovieController@index');
 Route::resource('movies', 'MovieController');
-Route::resource('actors', 'ActorController');
+Route::resource('series', 'SerieController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

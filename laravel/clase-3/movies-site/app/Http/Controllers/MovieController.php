@@ -8,6 +8,16 @@ use Illuminate\Http\Request;
 class MovieController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth')->except('index', 'show');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -50,7 +60,9 @@ class MovieController extends Controller
         'required' => 'El campo :attribute es requerido',
       ]);
 
+      $movie = Movie::create($request->all());
 
+      return redirect()->route('movies.show', ['movie' => $movie->id]);
     }
 
     /**
@@ -72,7 +84,7 @@ class MovieController extends Controller
      */
     public function edit(Movie $movie)
     {
-        //
+      return view('movies.edit', compact('movie'));
     }
 
     /**
@@ -84,7 +96,21 @@ class MovieController extends Controller
      */
     public function update(Request $request, Movie $movie)
     {
-        //
+      $request->validate([
+        'title' => 'required',
+        'rating' => 'required',
+        'awards' => 'required',
+        'release_date' => 'required',
+        'length' => 'required',
+      ],[
+        'required' => 'El campo :attribute es requerido',
+      ]);
+
+      $movie->update($request->all());
+
+      return redirect()
+        ->route('movies.show', $movie->id)
+        ->with('success','Se actualizó la película');
     }
 
     /**
