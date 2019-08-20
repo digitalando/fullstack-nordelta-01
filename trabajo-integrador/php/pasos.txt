@@ -1,0 +1,12 @@
+Notas
+- Vistas
+  - Carpeta partials para las partes que se repiten
+
+- Formularios
+  - Un archivo para las funciones compartidas
+  - Un archivo por cada formulario
+
+- Modelos (Base de datos)
+  - Un archivo para la conexión, lo guardamos con .example
+  - Un archivo .gitignore para que no se suba el que contiene las claves
+  - Un archivo por cada tabla (modelo)
