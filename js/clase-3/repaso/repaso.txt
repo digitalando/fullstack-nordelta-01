@@ -1,0 +1,77 @@
+# Strings
+
+Para JS, los strings son similares a un array. En este caso un array de letras.
+
+## Métodos
+
+var string = 'Éste es un texto';
+string.length // 16
+
+string.indexOf('texto'); // 11
+string.indexOf('php'); // -1 porque no existe en el strings
+
+// Machea una expresión regular contra nuestro string y devuelve un array de resultados.
+string.match(/expr/g)
+string.match(/e./g)
+
+https://developer.mozilla.org/es/docs/Web/JavaScript/Guide/Regular_Expressions
+https://www.regular-expressions.info/
+
+// Nos da una tajada de
+string.slice(start,end);
+string.slice(11,16); // Texto
+
+
+// Quita los espacios al comienzo y final del string, los del medio no.
+var otroString = '   con  muchos  espacios  ';
+otroString.trim();
+
+// Separa el string con los caracteres que indiquemos y nos devuelve un array con las partes.
+var tercerString = 'Josefina, Javier, Octavio, Germán'
+tercerString.split(', ')
+
+// Reemplaza una parte de nuestro string por otra
+tercerString.replace('Javier', 'Rosa');
+
+// Todas estas funciones no modifican la variable orginal, sinó que devuelven el resultado de la acción que hayamos realizado.
+// Para guardar los cambios tenemos que sobrescribir la variable original o crear una nueva.
+var stringActualizado = tercerString.replace('Javier', 'Rosa');
+
+var number = 1001;
+var numberString = number.toString();
+
+## JSON
+
+JSON.stringify();
+
+JSON.parse();
+
+## AJAX
+
+fetch('url')
+  .then((response) => {})
+  .then((data) => {})
+  .catch((error) => {})
+
+fetch('https://restcountries.eu/rest/v2/all')
+  .then( function (response)  {
+    return response.json()
+  })
+  .then( function (data)  {
+    return console.log(data)
+  })
+  .catch( function (error) {
+    return console.error(error)
+  })
+
+
+fetch('https://restcountries.eu/rest/v2/all')
+  .then((response) => response.json())
+  .then((data) => console.log(data))
+  .catch((error) => console.error(error))
+
+
+## Eventos en formularios
+
+
+## Procesamiento de formularios

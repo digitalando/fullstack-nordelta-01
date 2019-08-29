@@ -1,0 +1,125 @@
+/* Esquema de colores */
+/* https://coolors.co/b9e3c6-59c9a5-d81e5b-23395b-fffd98 */
+
+:root {
+  --primary-color: #59c9a5;
+  --secondary-color: #23395b;
+  --border-radius: 24px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background-color: var(--primary-color);
+  min-height: 100vh;
+}
+
+header,
+footer {
+  overflow: hidden;
+  padding: 24px;
+  background-color: var(--secondary-color);
+  color: white;
+  text-align: center;
+}
+
+main {
+  padding: 72px 0;
+}
+
+a {
+  color: var(--primary-color);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  min-height: calc(100vh - 246px);
+}
+
+/* Estilos generales de los formularios */
+
+form .row {
+  margin-bottom: 24px;
+}
+
+form label {
+  display: block;
+  font-size: .8em;
+  text-transform: uppercase;
+}
+
+form input,
+form button,
+form select {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  border-radius: var(--border-radius);
+}
+
+form input,
+form select {
+  margin-top: 6px;
+  background-color: white;
+  border: solid 2px var(--primary-color);
+}
+
+form button {
+  border: 0;
+  background-color: var(--primary-color);
+  color: white;
+}
+
+/* Estilos específicos del formulario de registro */
+form .row-provinces { display: none; }
+
+.register-form {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 48px;
+  background: white;
+  border-radius: var(--border-radius);
+}
+
+.errors {
+  padding: 12px;
+  border-radius: var(--border-radius);
+  color: #d81e5b;
+}
+
+/* Mensaje de éxito */
+.success-message {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 48px;
+  text-align: center;
+  background: white;
+  border-radius: var(--border-radius);
+}
+
+/* Estilos de grupos */
+
+.groups {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 24px;
+}
+
+.group {
+  width: 32%;
+  padding: 12px;
+  background-color: white;
+  border-radius: var(--border-radius);
+  margin-bottom: 24px;
+}
+
+.bg-tomato {
+  background-color: tomato;
+}
