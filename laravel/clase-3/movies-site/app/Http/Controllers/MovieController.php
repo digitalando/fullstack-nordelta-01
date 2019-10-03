@@ -121,6 +121,12 @@ class MovieController extends Controller
      */
     public function destroy(Movie $movie)
     {
-        //
+        dd($movie->actors);
+        $movie->actors->detach();
+        $movie->delete();
+
+        return redirect()
+          ->route('movies.list')
+          ->with('success','Se eliminó la película');
     }
 }

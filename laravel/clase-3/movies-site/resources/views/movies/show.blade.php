@@ -6,9 +6,14 @@
 
   <section class="jumbotron text-center">
     <h1 class="jumbotron-heading">Detalle de película</h1>
-    <a href="{{ route('movies.edit', $movie->id) }}" class="btn btn-success">Editar película</a>
-    <a href="{{ route('movies.destroy', $movie->id) }}" class="btn btn-danger">Borrar película</a>
-    <a href="{{ route('movies.index') }}" class="btn btn-primary">Volver al listado</a>
+    <form action="{{ route('movies.destroy', $movie->id) }}" method="post">
+      <a href="{{ route('movies.edit', $movie->id) }}" class="btn btn-success">Editar película</a>
+      @csrf
+      @method('DELETE')
+
+      <button type="submit" class="btn btn-danger">Borrar película</button>
+      <a href="{{ route('movies.index') }}" class="btn btn-primary">Volver al listado</a>
+  </form>
   </section>
 
   <section class="jumbotron text-center">
